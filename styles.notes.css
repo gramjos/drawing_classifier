@@ -1,0 +1,31 @@
+body{
+    font-family: Arial;
+	background-color: skyblue; 
+}
+/*
+we always the content div in the center of the page
+	centered by top/left
+
+*/
+#content{
+	/*
+	An element with position: absolute; is positioned relative to the nearest 
+	positioned ancestor (instead of positioned relative to the viewport, like fixed)
+	*/
+	position:absolute;
+	top: 50%;	/*Sets the top edge position in % of containing element.
+	The top property affects the vertical position of a positioned element. 
+	This property has no effect on non-positioned elements.
+
+If position: absolute; or position: fixed; 
+	- the top property sets the top edge of an element to a unit above/below 
+	the top edge of its nearest positioned ancestor.*/
+	left: 50%;
+	/*
+	the above will make the top left corner of the id='content' div element
+	the center of the page
+	to move(transform.translate) that aligning center point we use the following
+	*/
+	transform: translate(-50%,-50%);
+	text-align: center;
+}
