@@ -1,0 +1,16 @@
+body{
+    font-family: Arial;
+	background-color: skyblue; 
+}
+/*
+we always the content div in the center of the page
+	centered by top/left
+
+*/
+#content{
+	position:absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	text-align: center;
+}
