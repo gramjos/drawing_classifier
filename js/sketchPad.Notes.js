@@ -14,6 +14,14 @@ class SketchPad {
         // "link myself to the page (the element we are attached to 
         // which is aprt of the page)"
         container.appendChild(this.canvas);
+        
+        const lineBreak=document.createElement("br"); 
+        container.appendChild(lineBreak); 
+
+        this.undoBtn=document.createElement("button"); 
+        this.undoBtn.innerHTML="UNDO"; 
+        container.appendChild(this.undoBtn); 
+
         // mouse location
         /*
         "2d" parameter creates at CanvasRenderingContext2D object
@@ -49,6 +57,13 @@ class SketchPad {
                 this.#redraw(); // each call to redraw reset
             }
         }
+
+        // mobile touch
+        this.canvas.ontouchstart=(evt)=>{
+            const loc=evt.touches[0]; 
+            this.canvas.onmousedown(loc); 
+        }
+
         // turning flag on release left click
         this.canvas.onmouseup=()=>{
             this.isDrawing=false; 

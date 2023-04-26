@@ -23,6 +23,7 @@ draw.path=(ctx, path, color="black")=>{
     ctx.stroke();  // perform(fill in) the specified draw
 }
 
+//list of list(s) 
 draw.paths=(ctx, paths, color="black")=>{
     for(const path of paths){
         draw.path(ctx,path,color); 
