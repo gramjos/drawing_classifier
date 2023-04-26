@@ -1,15 +1,18 @@
 class SketchPad {
-    constructor(container, size=400){     // parameter, the div
+    constructor(container, size=400){     // parameter = the div
+        //The <canvas> element is only a container for graphics. 
+        //You must use a script to actually draw the graphics.
         this.canvas=document.createElement("canvas");
         this.canvas.width=size;
         this.canvas.height=size;
-        // a back tick is used to make a 'Template Literal' which is a string that works
-        // on multiple lines
+        // a back tick is used to make a 'Template Literal' which is a 
+        //  string that works on multiple lines
         this.canvas.style=`
             background-color:white;
             box-shadow: 0px 0px 10px 2px black;
         `;
-        // "link myself to the page (the element we are attached to)"
+        // "link myself to the page (the element we are attached to 
+        // which is aprt of the page)"
         container.appendChild(this.canvas);
         // mouse location
         /*
@@ -20,37 +23,43 @@ class SketchPad {
         */
         this.ctx=this.canvas.getContext("2d");
 
-        this.path=[]; 
+        this.paths=[]; // contains the segments that comprise a drawing
         this.isDrawing=false; 
 
         // # signifies private method
-        this.#addEventListeners(); 
+        this.#addEventListeners(); // status checking on a continual loop 
     }
 
-    // Add an event listener that fires when a user clicks
+    // Add an event listener that fires when a user left clicks
     #addEventListeners(){
+        // mark and store first point then turn drawing flag
         this.canvas.onmousedown=(evt)=>{
             const mouse=this.#getMouse(evt); 
-            this.path=[mouse]; 
+            this.paths.push([mouse]); 
             this.isDrawing=true;  
         }
-
+        // waiting for drawing flag to be flipped...
+        // continual segmenting as the mouse trace is recognized
+        // 
         this.canvas.onmousemove=(evt)=>{
             if(this.isDrawing){
                 const mouse=this.#getMouse(evt); 
-                this.path.push(mouse); 
-                this.#redraw(); 
+                const lastPath=this.paths[this.paths.length-1]
+                lastPath.push(mouse); 
+                this.#redraw(); // each call to redraw reset
             }
         }
+        // turning flag on release left click
         this.canvas.onmouseup=()=>{
             this.isDrawing=false; 
         }
     }
 
     #redraw(){
-        this.ctx.clearRect(0,0,
-            this,this.canvas.width,this.canvas.height);
-        draw.path(this.ctx, this.path); 
+        // context.clearRect(x,y,width,height); dimension of space to be cleared
+        this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
+        // external utility to perform draw
+        draw.paths(this.ctx, this.paths); 
     }
 
     #getMouse=(evt)=>{
@@ -65,7 +74,7 @@ class SketchPad {
         return [
             Math.round(evt.clientX-rect.left),
             Math.round(evt.clientY-rect.top)
-        ]
+        ]; 
     }
 
 }
