@@ -1,7 +1,7 @@
 utils={}; 
 
 utils.formatPercent=(n)=>{
-    return(n*100).toFixed(2)+"%"; 
+    return (n*100).toFixed(2)+"%"; 
 }
 utils.printProgress=(count,max)=>{
     process.stdout.clearLine(); 
