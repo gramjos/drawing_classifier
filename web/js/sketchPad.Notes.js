@@ -31,7 +31,7 @@ class SketchPad {
         */
         this.ctx=this.canvas.getContext("2d");
 
-        this.paths=[]; // contains the segments that comprise a drawing
+        this.paths=[]; // contains the many segments that comprise a drawing
         this.isDrawing=false; 
 
         // # signifies private method
