@@ -35,7 +35,9 @@ function createRow(container,studentName,samples){
 }
 
 function handleClick(sample,doScroll=true){
+    // On a user left click that selects nothing. Then,
     if(sample==null){
+        // clear all emphasis
         [...document.querySelectorAll('.emphasize')].forEach
                 ((e)=>e.classList.remove('emphasize'));
         return;
@@ -44,6 +46,7 @@ function handleClick(sample,doScroll=true){
     const el=document.getElementById(
         "sample_"+sample.id
     );
+    // clicking on an already clicked icon will de-emphasize it
     if(el.classList.contains("emphasize")){
         el.classList.remove("emphasize");
         chart.selectSample(null);
