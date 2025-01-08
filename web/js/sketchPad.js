@@ -43,6 +43,7 @@ class SketchPad{
              this.#redraw();
           }
        }
+       /// document instead of canvas b/c we want drawing to end when a "held clicked" goes beyond the canvas
        document.onmouseup=()=>{ this.isDrawing=false; }
        // mobile touches 
        this.canvas.ontouchstart=(evt)=>{
@@ -53,6 +54,7 @@ class SketchPad{
           const loc=evt.touches[0];
           this.canvas.onmousemove(loc);
        }
+       /// document instead of canvas b/c we want drawing to end when a "held clicked" goes beyond the canvas
        document.ontouchend=()=>{ document.onmouseup(); }
        // remove last drawn segment 
        this.undoBtn.onclick=()=>{
